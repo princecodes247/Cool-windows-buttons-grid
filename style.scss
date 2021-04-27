@@ -1,0 +1,115 @@
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --y: 50%;
+  --x: 50%;
+  --mouseY: 350px;
+  --mouseX: 550px;
+}
+
+body {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.back {
+  background-color: #000;
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  .h2 {
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 5rem;
+    cursor: default;
+    height: 40px;
+    width: 80px;
+    border: 1px solid #fff;
+  }
+}
+
+.front {
+  background-color: transparent;
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  z-index: 10;
+  position: absolute;
+  .h2 {
+    position: relative;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 5rem;
+    cursor: default;
+    height: 40px;
+    width: 80px;
+
+    border: 10px solid transparent;
+    border: 1px solid transparent;
+    background-color: rgba(10, 10, 10, 0.9);
+    overflow: hidden;
+    &:hover {
+      transition: none;
+      background-color: rgba(35, 35, 35, 0.9);
+    }
+    &:active {
+      transition: 0.3s all;
+      background-color: rgba(45, 45, 45, 0.9);
+      .o {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        // transform: translate(-50%, -50%);
+      }
+    }
+    .o {
+      position: absolute;
+      top: var(--mouseY);
+      left: var(--mouseX);
+      transform: translate(-50%, -50%);
+      transition: 0.5s all 0.1s;
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      background-color: rgba(55, 55, 55, 0.47);
+      animation: fizz 0.8s ease forwards;
+      pointer-events: none;
+      cursor: none;
+    }
+  }
+}
+
+.light {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: aqua;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(
+    circle at var(--x) var(--y),
+    transparent 2%,
+    rgba(0, 0, 0, 0.35) 6%,
+    rgba(0, 0, 0, 0.9) 13%,
+    rgba(0, 0, 0, 1) 29%
+  );
+}
+
+@keyframes fizz {
+  to {
+    height: 150px;
+    width: 150px;
+    opacity: 0;
+  }
+}
